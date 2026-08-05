@@ -1,0 +1,131 @@
+.navbar {
+    height: 60px;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    position: sticky;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;    
+    color: white;
+}
+
+.navbar-brand {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Контейнер для кнопок */
+.navbar-links {
+    display: flex;
+    gap: 10px; /* Расстояние между кнопками */
+}
+
+/* Базовый стиль для кнопок навигации */
+.navbar-link {
+    text-decoration: none;
+    color: #ccc;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Эффект при наведении мыши */
+.navbar-link:hover {
+    background-color: #555;
+    color: white;
+}
+
+/* Стиль для активной (текущей) вкладки */
+.navbar-link.active {
+    background-color: burlywood;
+    color: rgb(80, 128, 0);
+    font-weight: bold;
+}
+
+.sidebar-layout {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* ***********************Сайдбар менюшка*********************** */
+.sidebar-filter {
+    top: 80px;
+    right: 20px;
+    width: 260px;
+    padding: 20px;
+    position: fixed;
+    flex-shrink: 0;
+    border: 2px solid burlywood;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.sidebar-filter h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+}
+
+.sidebar-filter-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: burlywood;
+    gap: 6px;
+}
+
+.sidebar-filter-group label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sidebar-filter-group input,
+.sidebar-filter-group select {
+    padding: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: antiquewhite;
+    font-size: 14px;
+}
+
+.sidebar-filter-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.sidebar-btn-apply {
+    flex: 1;
+    padding: 9px;
+    background-color: burlywood;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sidebar-btn-apply:hover {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: green;
+}
+
+.sidebar-btn-reset {
+    flex: 1;
+    padding: 9px;
+    background-color: dimgrey;
+    color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sidebar-btn-reset:hover {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: red;
+}

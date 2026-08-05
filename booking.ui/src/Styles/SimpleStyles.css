@@ -1,0 +1,128 @@
+/* Фоновое затемнение на весь экран */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Белая карточка модального окна */
+.modal-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    min-width: 350px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: antiquewhite;
+    position: relative;
+}
+
+/* Шапка окна с заголовком и кнопкой закрытия */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid burlywood;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Группировка label и input */
+.modal-input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid burlywood;
+    border-radius: 10px;
+    gap: 5px;
+}
+
+/* Стилизация для чекбокса */
+.modal-input-group-checkbox {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Блок кнопок внизу формы */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.modal-btn-save {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-btn-cancel {
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-btn-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ff0000;
+}
+
+.simple-body {
+    top: 80px;
+    padding: 20px;
+}
+
+.simple-content {
+    background-color: antiquewhite;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: burlywood;
+    position: relative;
+}
+
+.simple-content:hover {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: green;
+}
+
+.simple-btn-create {
+    top: 460px;
+    right: 100px;
+    padding: 20px;
+    position: fixed;
+    flex-shrink: 0;
+    background-color: antiquewhite;
+    border: 2px solid burlywood;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.simple-btn-create:hover {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: green;
+}

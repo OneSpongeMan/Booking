@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Booking.DAL\Booking.DAL.csproj" />
+    <ProjectReference Include="..\Booking.Shared\Booking.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
