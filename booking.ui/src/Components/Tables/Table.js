@@ -40,7 +40,6 @@ function Table() {
                 // Придумать решение получше
                 else
                 {
-                    console.log(response)
                     if (response.data.hasOwnProperty('length'))
                         setTables(response.data)
                     else                    
@@ -48,7 +47,7 @@ function Table() {
                 }
             })
             .catch(err => {
-                const message = err.response?.data?.message || 'Ошибка загрузки столиков';
+                const message = err.response.data.error || 'Ошибка загрузки столиков';
                 setError(message);
             })
             .finally(() => {
@@ -120,7 +119,7 @@ function Table() {
     };
 
     return (
-        <div className='tables'>
+        <div className='simple-body'>
         <h2>Столики в зале</h2>        
             <div>
             {
