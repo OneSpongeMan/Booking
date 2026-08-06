@@ -56,7 +56,6 @@ function Table() {
     }, [filterParams, tableCreate, tableForm]);
 
     if (loading) return <div>Загрузка столиков...</div>;
-    if (error) return <h3 style={{ color: 'red' }}>Возникла проблема: {error}</h3>;
 
     const HandleTableClick = (table) => {
         setTableForm({id: table.id, number: table.number, seats: table.seats, nearFountain: table.nearFountain})
@@ -118,9 +117,14 @@ function Table() {
         setFilterParams({});
     };
 
+    const HandleError = () => {
+        alert(`Возникла проблема: ${error}`);
+        setError(null);
+    }
+
     return (
         <div className='simple-body'>
-        <h2>Столики в зале</h2>        
+        <h2>Столики в зале</h2>
             <div>
             {
                 tables.length ?
@@ -132,9 +136,6 @@ function Table() {
                         Столик №{table.number}
                     </div>
                 ) : null
-            }
-            {
-                error ? <div>{error}</div> : null
             }
             {
                 tableForm && (
@@ -159,6 +160,11 @@ function Table() {
             }
             </div>
             <button className='simple-btn-create' onClick={HandleTableCreate}>Создать столик</button>
+        {
+            error && (
+                HandleError()                
+            )
+        }
         </div>
     )
 }

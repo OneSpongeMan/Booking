@@ -24,7 +24,7 @@ function Guest() {
             const filterValue = filterParams[filterName];
             
             endpoint = `/Guest/${filterName}:${filterValue}`;
-            if (filterName === 'regular')
+            if (filterName === 'regularCustomer')
                 endpoint = '/Guest/regular'
         }
 
@@ -32,8 +32,13 @@ function Guest() {
             .then(response => {
                 if (response.data.length > 0)
                     setGuests(response.data);
-                else                  
-                    setGuests([response.data])
+                else
+                {
+                    if (response.data.hasOwnProperty('length'))
+                        setGuests(response.data)
+                    else                    
+                        setGuests([response.data])
+                }
             })
             .catch(err => {
                 const message = err.response.data.error || 'Ошибка загрузки посетителей';
@@ -45,7 +50,6 @@ function Guest() {
     }, [filterParams, guestCreate, guestForm]);
 
     if (loading) return <div>Загрузка списка посетителей...</div>;
-    if (error) return <h3 style={{ color: 'red' }}>Возникла проблема: {error}</h3>;
 
     const HandleGuestClick = (guest) => {
         setGuestForm({
@@ -110,9 +114,14 @@ function Guest() {
         setFilterParams({});
     };
 
+    const HandleError = () => {
+        alert(`Возникла проблема: ${error}`);
+        setError(null);
+    }
+
     return (
         <div className='simple-body'>
-        <h2>Список гостей</h2>        
+        <h2>Список гостей</h2>
             <div>
             {
                 guests.length ?
@@ -151,6 +160,11 @@ function Guest() {
             }          
             </div>
             <button className='simple-btn-create' onClick={HandleGuestCreate}>Создать гостя</button>
+        {
+            error && (
+                HandleError()                
+            )
+        }
         </div>
     )
 }

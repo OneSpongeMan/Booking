@@ -79,10 +79,10 @@ function GuestMenu({onApplyFilters, onResetFilters}) {
                 </div>
 
                 <div className='sidebar-filter-group'>
-                    <label htmlFor='regular'>Постоянные клиенты:</label>
+                    <label htmlFor='regularCustomer'>Постоянные клиенты:</label>
                     <select
-                        id='regular'
-                        name='regular'
+                        id='regularCustomer'
+                        name='regularCustomer'
                         value={filters.regularCustomer}
                         onChange={HandleChange}
                     >
