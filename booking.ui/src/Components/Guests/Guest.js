@@ -32,11 +32,10 @@ function Guest() {
             .then(response => {
                 if (response.data.length > 0)
                     setGuests(response.data);
-                else
-                {
+                else {
                     if (response.data.hasOwnProperty('length'))
-                        setGuests(response.data)
-                    else                    
+                        alert('Гости с такими параметрами не найдены');
+                    else
                         setGuests([response.data])
                 }
             })
@@ -63,6 +62,7 @@ function Guest() {
     };
     
     const CloseGuestDetails = () => {
+        setFilterParams({});
         setGuestForm(null);
         setGuestCreate(false);
     };
@@ -86,7 +86,6 @@ function Guest() {
                 CloseGuestDetails();
             })
             .catch(err => {
-                console.error(err);
                 alert("Не удалось удалить гостя!");
             });
     };
@@ -101,8 +100,7 @@ function Guest() {
                 CloseGuestDetails();
             })
             .catch(err => {
-                console.error(err);
-                alert("Не удалось создать гостя!");
+                alert(`Не удалось создать гостя: ${err.response.data.error}`);
             });
     }
 

@@ -38,11 +38,11 @@ function Table() {
                 // Проблема с ответом в виде массива, если он не содержит элементов
                 // Рисуется единственный пустой блок
                 // Придумать решение получше
-                else
-                {
+                else {
                     if (response.data.hasOwnProperty('length'))
-                        setTables(response.data)
-                    else                    
+                        alert('Столики с такими параметрами не найдены');
+                        // setTables(response.data)
+                    else
                         setTables([response.data])
                 }
             })
@@ -62,6 +62,7 @@ function Table() {
     };
     
     const CloseTableDetails = () => {
+        setFilterParams({});
         setTableForm(null);
         setTableCreate(false);
     };
@@ -74,7 +75,7 @@ function Table() {
                 CloseTableDetails();
             })
             .catch(err => {
-                console.error(err);
+                // console.error(err);
                 alert("Не удалось обновить столик!");
             });
     };
@@ -89,7 +90,7 @@ function Table() {
                 CloseTableDetails();
             })
             .catch(err => {
-                console.error(err);
+                // console.error(err);
                 alert("Не удалось удалить столик!");
             });
     };
@@ -104,8 +105,7 @@ function Table() {
                 CloseTableDetails();
             })
             .catch(err => {
-                console.error(err);
-                alert("Не удалось создать столик!");
+                alert(`Не удалось создать столик: ${err.response.data.error}`);
             });
     }
 
