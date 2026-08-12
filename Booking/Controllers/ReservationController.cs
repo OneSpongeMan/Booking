@@ -37,7 +37,7 @@ namespace Booking.Controllers
             return Ok(response);
         }
 
-        [HttpGet("available_tables")]
+        [HttpGet("available_tables/start={start}&end={end}")]
         public async Task<ActionResult<List<TableDTO>>> GetAvailableTables(DateTime start, DateTime end)
         {
             var tables = await _reservationService.GetAvailableTablesAsync(start, end);

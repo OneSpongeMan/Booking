@@ -3,10 +3,11 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Table from './Components/Tables/Table';
 import Guest from './Components/Guests/Guest';
+import Reservation from './Components/Reservations/Reservation';
 import NavigationMenu from './Components/Menus/NavigationMenu';
 
 // const Guest = () => <div style={{ padding: '20px' }}><h2>Список гостей</h2><p>Данные загружаются с /api/guests...</p></div>;
-const Reservation = () => <div style={{ padding: '20px' }}><h2>Бронирования</h2><p>Данные загружаются с /api/reservations...</p></div>;
+// const Reservation = () => <div style={{ padding: '20px' }}><h2>Бронирования</h2><p>Данные загружаются с /api/reservations...</p></div>;
 
 function App() {
   return (
