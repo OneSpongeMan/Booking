@@ -2,6 +2,7 @@
 using Booking.Shared.Interfaces;
 using Booking.Shared.Models;
 using System.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Booking.BLL.Services
 {
@@ -118,7 +119,26 @@ namespace Booking.BLL.Services
 
         private bool CheckOverlap(DateTime startOld, DateTime endOld, DateTime startNew, DateTime endNew)
         {
-            return endNew <= startOld || startNew >= endOld;
+            //return endNew <= startOld || startNew >= endOld;
+
+            if (startOld < startNew)
+            {
+                if (endOld >= endNew)
+                    return true;
+
+                if (endOld > startNew && endOld < endNew)
+                    return true; 
+            }
+            else
+            {
+                if (endNew >= endOld)
+                    return true;
+
+                if (endNew > startOld && endNew < endOld)
+                    return true;
+            }
+
+            return false;
         }
     }
 }

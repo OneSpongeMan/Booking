@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import '../../Styles/SimpleStyles.css'
 
-function ReservationCreate({onCreate, onClose}) {
-    const [reservation, setReservation] = useState({table: '', guest: '', start: '', end: '', personsNumber: '', tempBooked: false, comment: ''});
+function ReservationCreate({initialData, onCreate, onClose}) {
+    const defaultReservation = initialData || {
+        table: '', guest: '', start: '', end: '', personsNumber: '', tempBooked: false, comment: ''
+    };
+    const [reservation, setReservation] = useState(defaultReservation);
     
     const HandleSubmit = (e) => {
         e.preventDefault();

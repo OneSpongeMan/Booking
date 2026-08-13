@@ -2,14 +2,17 @@ import React, {useState, useEffect} from 'react'
 import api from '../API'
 import ReservationModal from './ReservationModal';
 import ReservationCreate from './ReservationCreate';
+import ReservationMenu from '../Menus/ReservationMenu';
 
 import '../../Styles/SimpleStyles.css'
-import ReservationMenu from '../Menus/ReservationMenu';
+import FormatToReadableDate from '../ISOConverter'
+
 
 function Reservation() {
     const [reservations, setReservations] = useState([]);
     const [reservationForm, setReservationForm] = useState();
     const [reservationCreate, setReservationCreate] = useState(false);
+    const [createInitialData, setCreateInitialData] = useState(null);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -25,7 +28,7 @@ function Reservation() {
 
             // Бэк изменился, другие требования к вызову API
             // Придумать более изящный способ смены рута
-            if (filterName === 'start' || 'end')
+            if (filterName === 'start' || filterName === 'end')
                 endpoint += `/available_tables/start=${filterParams.start}&end=${filterParams.end}`;
             else
                 endpoint += `/${filterName}:${filterValue}`;
@@ -66,23 +69,39 @@ function Reservation() {
         setFilterParams({});
     };
 
-    const HandleReservationClick = (reservation) => {
-        setReservationForm({
-            id: reservation.id,
-            table: reservation.table,
-            start: reservation.start,
-            end: reservation.end,
-            guest: reservation.guest,
-            personsNumber: reservation.personsNumber,
-            tempBooked: reservation.tempBooked,
-            comment: reservation.comment
-        })
+    const HandleItemClick = (item) => {
+        if (item.seats !== undefined) {
+            setCreateInitialData({
+                table: item.number,
+                start: filterParams.start || '',
+                end: filterParams.end || '',
+                guest: '',
+                personsNumber: '',
+                tempBooked: false,
+                comment: ''
+            });
+            setReservationCreate(true);
+
+        } else {
+            setReservationForm({
+                id: item.id,
+                table: item.table,
+                start: item.start,
+                end: item.end,
+                guest: item.guest,
+                personsNumber: item.personsNumber,
+                tempBooked: item.tempBooked,
+                comment: item.comment
+            })
+        }
     }
 
     const CloseReservationDetails = () => {
-        setFilterParams({});
+        // Посмотреть сброс фильтров в других частях фронта
+        // setFilterParams({});
         setReservationForm();
         setReservationCreate(false);
+        setCreateInitialData(null);
     }
 
     const HandleReservationCreate = () => {
@@ -127,17 +146,22 @@ function Reservation() {
         <div>
             {
                 error && (
-                    HandleError()                
+                    HandleError()
                 )
             }
             {
                 reservations.length ?
-                reservations.map(reservation =>
+                reservations.map(item =>
                     <div 
-                        key={reservation.id}
-                        onClick={() => HandleReservationClick(reservation)}
+                        key={item.id}
+                        onClick={() => HandleItemClick(item)}
                         className='simple-content'>
-                        Стол {reservation.table} <br /> {reservation.start}-{reservation.surname}
+                        {/* Стол {reservation.table} <br /> {reservation.start}-{reservation.surname} */}
+                        {item.seats !== undefined ? (
+                            <span>Свободный столик №{item.number} ({item.seats} мест)</span>
+                        ) : (
+                            <span>Стол {item.table} <br /> {FormatToReadableDate(item.start)} - {FormatToReadableDate(item.end)}</span>
+                        )}
                     </div>
                 ) : null
             }
@@ -151,7 +175,8 @@ function Reservation() {
             }
             {
                 reservationCreate && (
-                    <ReservationCreate onCreate={CreateReservation}
+                    <ReservationCreate initialData={createInitialData}
+                                        onCreate={CreateReservation}
                                         onClose={CloseReservationDetails}/>
                 )
             }
